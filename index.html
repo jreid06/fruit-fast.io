@@ -8,22 +8,24 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --cream: #faf6ef;
-    --warm-white: #fff9f2;
-    --deep-green: #1a3a2a;
-    --sage: #6b8f71;
-    --terracotta: #c4674a;
+    --bg: #0e1210;
+    --surface: #161c18;
+    --surface-2: #1d2620;
+    --surface-3: #232e26;
+    --sage: #7aab82;
+    --sage-dim: #4a7052;
+    --terracotta: #d97a5e;
     --gold: #d4a847;
-    --mango: #f5a623;
-    --blush: #e8b4a0;
-    --text: #2d2015;
-    --muted: #7a6a58;
+    --blush: #d9927a;
+    --text: #e8ede9;
+    --muted: #7a9080;
+    --border: rgba(255,255,255,0.07);
   }
 
 - { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-background: var(–cream);
+background: var(–bg);
 color: var(–text);
 font-family: ‘DM Sans’, sans-serif;
 font-weight: 300;
@@ -39,7 +41,7 @@ top: -200px;
 right: -200px;
 width: 600px;
 height: 600px;
-background: radial-gradient(circle, rgba(212,168,71,0.08) 0%, transparent 70%);
+background: radial-gradient(circle, rgba(212,168,71,0.05) 0%, transparent 70%);
 pointer-events: none;
 }
 body::after {
@@ -49,7 +51,7 @@ bottom: -150px;
 left: -150px;
 width: 500px;
 height: 500px;
-background: radial-gradient(circle, rgba(107,143,113,0.1) 0%, transparent 70%);
+background: radial-gradient(circle, rgba(122,171,130,0.07) 0%, transparent 70%);
 pointer-events: none;
 }
 
@@ -72,7 +74,7 @@ font-weight: 500;
 letter-spacing: 3px;
 text-transform: uppercase;
 color: var(–sage);
-border: 1px solid var(–sage);
+border: 1px solid var(–sage-dim);
 padding: 6px 16px;
 border-radius: 20px;
 margin-bottom: 20px;
@@ -82,7 +84,7 @@ h1 {
 font-family: ‘Playfair Display’, serif;
 font-size: clamp(2.4rem, 6vw, 4rem);
 font-weight: 700;
-color: var(–deep-green);
+color: var(–text);
 line-height: 1.1;
 margin-bottom: 12px;
 }
@@ -101,8 +103,9 @@ margin: 0 auto;
 
 /* Combining rules */
 .rules-section {
-background: var(–deep-green);
-color: var(–cream);
+background: var(–surface);
+color: var(–text);
+border: 1px solid var(–border);
 border-radius: 20px;
 padding: 40px;
 margin-bottom: 48px;
@@ -139,14 +142,14 @@ gap: 20px;
 }
 
 .rule-card {
-background: rgba(255,255,255,0.05);
-border: 1px solid rgba(255,255,255,0.1);
+background: var(–surface-2);
+border: 1px solid var(–border);
 border-radius: 12px;
 padding: 20px;
 }
 
-.rule-card.do { border-color: rgba(107,143,113,0.4); }
-.rule-card.dont { border-color: rgba(196,103,74,0.4); }
+.rule-card.do { border-color: rgba(122,171,130,0.3); }
+.rule-card.dont { border-color: rgba(217,122,94,0.3); }
 
 .rule-label {
 font-size: 10px;
@@ -203,14 +206,14 @@ font-weight: 700;
 flex-shrink: 0;
 }
 
-.day-1 .day-badge { background: #e8f4ea; color: var(–deep-green); }
-.day-2 .day-badge { background: #fdeee8; color: var(–terracotta); }
-.day-3 .day-badge { background: #fef5e0; color: #8a6000; }
+.day-1 .day-badge { background: rgba(122,171,130,0.15); color: var(–sage); }
+.day-2 .day-badge { background: rgba(217,122,94,0.15); color: var(–terracotta); }
+.day-3 .day-badge { background: rgba(212,168,71,0.15); color: var(–gold); }
 
 .day-title {
 font-family: ‘Playfair Display’, serif;
 font-size: 1.5rem;
-color: var(–deep-green);
+color: var(–text);
 }
 
 .day-theme {
@@ -230,8 +233,8 @@ gap: 16px;
 }
 
 .meal-card {
-background: var(–warm-white);
-border: 1px solid rgba(0,0,0,0.06);
+background: var(–surface);
+border: 1px solid var(–border);
 border-radius: 16px;
 padding: 20px;
 transition: transform 0.2s, box-shadow 0.2s;
@@ -240,7 +243,7 @@ position: relative;
 
 .meal-card:hover {
 transform: translateY(-3px);
-box-shadow: 0 12px 32px rgba(0,0,0,0.07);
+box-shadow: 0 12px 32px rgba(0,0,0,0.4);
 }
 
 .meal-time {
@@ -255,7 +258,7 @@ margin-bottom: 8px;
 .meal-name {
 font-family: ‘Playfair Display’, serif;
 font-size: 1.05rem;
-color: var(–deep-green);
+color: var(–text);
 margin-bottom: 8px;
 line-height: 1.3;
 }
