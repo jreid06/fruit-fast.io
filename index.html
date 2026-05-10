@@ -1,70 +1,62 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" style="background:#0e1210;">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="dark">
 <title>3-Day Fruit Fast</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg: #0e1210;
-    --surface: #161c18;
-    --surface-2: #1d2620;
-    --surface-3: #232e26;
-    --sage: #7aab82;
-    --sage-dim: #4a7052;
-    --terracotta: #d97a5e;
-    --gold: #d4a847;
-    --blush: #d9927a;
-    --text: #e8ede9;
-    --muted: #7a9080;
-    --border: rgba(255,255,255,0.07);
-  }
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-- { margin: 0; padding: 0; box-sizing: border-box; }
-
-body {
-background: var(–bg);
-color: var(–text);
+html, body {
+background: #0e1210 !important;
+color: #e8ede9 !important;
 font-family: ‘DM Sans’, sans-serif;
 font-weight: 300;
 line-height: 1.6;
 min-height: 100vh;
+color-scheme: dark;
 }
 
-/* Decorative background */
+body {
+position: relative;
+overflow-x: hidden;
+}
+
 body::before {
 content: ‘’;
 position: fixed;
-top: -200px;
-right: -200px;
-width: 600px;
-height: 600px;
-background: radial-gradient(circle, rgba(212,168,71,0.05) 0%, transparent 70%);
+top: -200px; right: -200px;
+width: 600px; height: 600px;
+background: radial-gradient(circle, rgba(212,168,71,0.06) 0%, transparent 70%);
 pointer-events: none;
+z-index: 0;
 }
 body::after {
 content: ‘’;
 position: fixed;
-bottom: -150px;
-left: -150px;
-width: 500px;
-height: 500px;
-background: radial-gradient(circle, rgba(122,171,130,0.07) 0%, transparent 70%);
+bottom: -150px; left: -150px;
+width: 500px; height: 500px;
+background: radial-gradient(circle, rgba(122,171,130,0.08) 0%, transparent 70%);
 pointer-events: none;
+z-index: 0;
 }
 
 .container {
-max-width: 860px;
+max-width: 880px;
 margin: 0 auto;
-padding: 60px 24px 80px;
+padding: 64px 24px 96px;
+position: relative;
+z-index: 1;
 }
 
+/* ── HEADER ── */
 header {
 text-align: center;
 margin-bottom: 64px;
-animation: fadeUp 0.8s ease both;
+animation: fadeUp 0.7s ease both;
 }
 
 .header-tag {
@@ -73,43 +65,42 @@ font-size: 11px;
 font-weight: 500;
 letter-spacing: 3px;
 text-transform: uppercase;
-color: var(–sage);
-border: 1px solid var(–sage-dim);
-padding: 6px 16px;
+color: #7aab82;
+border: 1px solid #3d6045;
+padding: 6px 18px;
 border-radius: 20px;
-margin-bottom: 20px;
+margin-bottom: 22px;
 }
 
 h1 {
 font-family: ‘Playfair Display’, serif;
 font-size: clamp(2.4rem, 6vw, 4rem);
 font-weight: 700;
-color: var(–text);
+color: #e8ede9;
 line-height: 1.1;
-margin-bottom: 12px;
+margin-bottom: 14px;
 }
 
 h1 em {
 font-style: italic;
-color: var(–terracotta);
+color: #d97a5e;
 }
 
 .subtitle {
 font-size: 1rem;
-color: var(–muted);
+color: #6a8870;
 max-width: 420px;
 margin: 0 auto;
 }
 
-/* Combining rules */
+/* ── RULES ── */
 .rules-section {
-background: var(–surface);
-color: var(–text);
-border: 1px solid var(–border);
+background: #161c18;
+border: 1px solid rgba(255,255,255,0.07);
 border-radius: 20px;
 padding: 40px;
 margin-bottom: 48px;
-animation: fadeUp 0.8s 0.1s ease both;
+animation: fadeUp 0.7s 0.1s ease both;
 position: relative;
 overflow: hidden;
 }
@@ -117,71 +108,85 @@ overflow: hidden;
 .rules-section::before {
 content: ‘⚠’;
 position: absolute;
-top: -10px;
-right: 20px;
+top: -10px; right: 20px;
 font-size: 120px;
-opacity: 0.04;
+opacity: 0.03;
 line-height: 1;
+pointer-events: none;
 }
 
 .rules-section h2 {
 font-family: ‘Playfair Display’, serif;
 font-size: 1.5rem;
 margin-bottom: 24px;
-color: var(–gold);
+color: #d4a847;
 }
 
 .rules-grid {
 display: grid;
 grid-template-columns: 1fr 1fr;
-gap: 20px;
-}
-
-@media (max-width: 600px) {
-.rules-grid { grid-template-columns: 1fr; }
+gap: 16px;
 }
 
 .rule-card {
-background: var(–surface-2);
-border: 1px solid var(–border);
+background: #1d2620;
 border-radius: 12px;
 padding: 20px;
+border: 1px solid rgba(255,255,255,0.05);
 }
 
-.rule-card.do { border-color: rgba(122,171,130,0.3); }
-.rule-card.dont { border-color: rgba(217,122,94,0.3); }
+.rule-card.do  { border-color: rgba(122,171,130,0.25); }
+.rule-card.dont { border-color: rgba(217,122,94,0.25); }
 
 .rule-label {
 font-size: 10px;
 font-weight: 500;
 letter-spacing: 2.5px;
 text-transform: uppercase;
-margin-bottom: 10px;
+margin-bottom: 12px;
+display: block;
 }
-
-.rule-card.do .rule-label { color: var(–sage); }
-.rule-card.dont .rule-label { color: var(–blush); }
+.rule-card.do  .rule-label { color: #7aab82; }
+.rule-card.dont .rule-label { color: #d9927a; }
 
 .rule-card ul {
 list-style: none;
 font-size: 0.875rem;
 line-height: 2;
-opacity: 0.85;
+color: rgba(232,237,233,0.75);
 }
 
-.rule-card ul li::before {
-margin-right: 8px;
+.rule-card ul li::before { margin-right: 8px; }
+.rule-card.do  ul li::before { content: ‘✓’; color: #7aab82; }
+.rule-card.dont ul li::before { content: ‘✕’; color: #d9927a; }
+
+/* ── HYDRATION ── */
+.hydration-strip {
+background: rgba(122,171,130,0.07);
+border-left: 3px solid #3d6045;
+border-radius: 0 12px 12px 0;
+padding: 18px 24px;
+margin-bottom: 56px;
+font-size: 0.875rem;
+color: rgba(232,237,233,0.8);
+animation: fadeUp 0.7s 0.15s ease both;
 }
 
-.rule-card.do ul li::before { content: ‘✓’; color: var(–sage); }
-.rule-card.dont ul li::before { content: ‘✕’; color: var(–blush); }
+.hydration-strip strong {
+display: block;
+font-weight: 500;
+margin-bottom: 6px;
+font-size: 0.8rem;
+text-transform: uppercase;
+letter-spacing: 1px;
+color: #7aab82;
+}
 
-/* Days */
+/* ── DAYS ── */
 .day-section {
-margin-bottom: 40px;
-animation: fadeUp 0.8s ease both;
+margin-bottom: 52px;
+animation: fadeUp 0.7s ease both;
 }
-
 .day-section:nth-child(3) { animation-delay: 0.2s; }
 .day-section:nth-child(4) { animation-delay: 0.3s; }
 .day-section:nth-child(5) { animation-delay: 0.4s; }
@@ -194,8 +199,7 @@ margin-bottom: 20px;
 }
 
 .day-badge {
-width: 52px;
-height: 52px;
+width: 52px; height: 52px;
 border-radius: 50%;
 display: flex;
 align-items: center;
@@ -206,116 +210,95 @@ font-weight: 700;
 flex-shrink: 0;
 }
 
-.day-1 .day-badge { background: rgba(122,171,130,0.15); color: var(–sage); }
-.day-2 .day-badge { background: rgba(217,122,94,0.15); color: var(–terracotta); }
-.day-3 .day-badge { background: rgba(212,168,71,0.15); color: var(–gold); }
+.day-1 .day-badge { background: rgba(122,171,130,0.15); color: #7aab82; }
+.day-2 .day-badge { background: rgba(217,122,94,0.15);  color: #d97a5e; }
+.day-3 .day-badge { background: rgba(212,168,71,0.15);  color: #d4a847; }
 
 .day-title {
 font-family: ‘Playfair Display’, serif;
 font-size: 1.5rem;
-color: var(–text);
+color: #e8ede9;
 }
 
 .day-theme {
-font-size: 0.8rem;
-color: var(–muted);
+font-size: 0.78rem;
+color: #6a8870;
 letter-spacing: 1.5px;
 text-transform: uppercase;
 font-weight: 500;
 display: block;
-margin-top: 2px;
+margin-top: 3px;
 }
 
+/* ── MEAL GRID ── */
 .meals-grid {
 display: grid;
 grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-gap: 16px;
+gap: 14px;
 }
 
 .meal-card {
-background: var(–surface);
-border: 1px solid var(–border);
+background: #161c18;
+border: 1px solid rgba(255,255,255,0.07);
 border-radius: 16px;
 padding: 20px;
-transition: transform 0.2s, box-shadow 0.2s;
-position: relative;
+transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .meal-card:hover {
 transform: translateY(-3px);
-box-shadow: 0 12px 32px rgba(0,0,0,0.4);
+box-shadow: 0 16px 40px rgba(0,0,0,0.5);
+}
+
+.meal-emoji {
+font-size: 1.6rem;
+margin-bottom: 12px;
+display: block;
 }
 
 .meal-time {
-font-size: 11px;
+font-size: 10px;
 font-weight: 500;
 letter-spacing: 1.5px;
 text-transform: uppercase;
-color: var(–muted);
-margin-bottom: 8px;
+color: #6a8870;
+margin-bottom: 6px;
 }
 
 .meal-name {
 font-family: ‘Playfair Display’, serif;
 font-size: 1.05rem;
-color: var(–text);
+color: #e8ede9;
 margin-bottom: 8px;
 line-height: 1.3;
 }
 
 .meal-fruits {
 font-size: 0.825rem;
-color: var(–muted);
+color: rgba(232,237,233,0.6);
 line-height: 1.6;
-}
-
-.meal-emoji {
-font-size: 1.5rem;
-margin-bottom: 10px;
-display: block;
 }
 
 .meal-note {
 font-size: 0.75rem;
-color: var(–sage);
-margin-top: 8px;
+color: #7aab82;
+margin-top: 10px;
 font-style: italic;
+line-height: 1.5;
 }
 
-/* Hydration strip */
-.hydration-strip {
-background: linear-gradient(135deg, #e8f4ea, #d4ead6);
-border-left: 3px solid var(–sage);
-border-radius: 0 12px 12px 0;
-padding: 18px 24px;
-margin-bottom: 48px;
-font-size: 0.875rem;
-color: var(–deep-green);
-animation: fadeUp 0.8s 0.15s ease both;
-}
-
-.hydration-strip strong {
-display: block;
-font-weight: 500;
-margin-bottom: 4px;
-font-size: 0.8rem;
-text-transform: uppercase;
-letter-spacing: 1px;
-color: var(–sage);
-}
-
-/* Tips */
+/* ── TIPS ── */
 .tips-section {
-margin-top: 48px;
+margin-top: 56px;
 padding-top: 48px;
-border-top: 1px solid rgba(0,0,0,0.08);
-animation: fadeUp 0.8s 0.5s ease both;
+border-top: 1px solid rgba(255,255,255,0.07);
+animation: fadeUp 0.7s 0.5s ease both;
 }
 
 .tips-section h2 {
 font-family: ‘Playfair Display’, serif;
 font-size: 1.5rem;
-color: var(–deep-green);
+color: #e8ede9;
 margin-bottom: 20px;
 }
 
@@ -326,33 +309,33 @@ gap: 12px;
 list-style: none;
 }
 
-@media (max-width: 600px) {
-.tips-list { grid-template-columns: 1fr; }
-.rules-section { padding: 28px 20px; }
-.container { padding: 40px 16px 60px; }
-}
-
 .tip-item {
-background: var(–warm-white);
-border: 1px solid rgba(0,0,0,0.06);
+background: #161c18;
+border: 1px solid rgba(255,255,255,0.07);
 border-radius: 12px;
 padding: 16px 18px;
 font-size: 0.85rem;
-color: var(–text);
+color: rgba(232,237,233,0.75);
 display: flex;
 gap: 10px;
 align-items: flex-start;
+line-height: 1.5;
 }
 
-.tip-icon {
-font-size: 1rem;
-flex-shrink: 0;
-margin-top: 1px;
+.tip-icon { font-size: 1rem; flex-shrink: 0; margin-top: 1px; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 600px) {
+.rules-grid   { grid-template-columns: 1fr; }
+.tips-list    { grid-template-columns: 1fr; }
+.rules-section { padding: 28px 20px; }
+.container    { padding: 40px 16px 64px; }
 }
 
+/* ── ANIMATION ── */
 @keyframes fadeUp {
-from { opacity: 0; transform: translateY(20px); }
-to { opacity: 1; transform: translateY(0); }
+from { opacity: 0; transform: translateY(18px); }
+to   { opacity: 1; transform: translateY(0); }
 }
 </style>
 
@@ -360,17 +343,21 @@ to { opacity: 1; transform: translateY(0); }
 <body>
 <div class="container">
 
+  <!-- HEADER -->
+
   <header>
     <span class="header-tag">11 May – 13 May 2026</span>
     <h1>3-Day <em>Fruit Fast</em></h1>
     <p class="subtitle">A gentle cleanse built around fruit combining principles for optimal digestion and energy.</p>
   </header>
 
+  <!-- RULES -->
+
   <div class="rules-section">
     <h2>Fruit Combining Rules</h2>
     <div class="rules-grid">
       <div class="rule-card do">
-        <p class="rule-label">✓ Pair Together</p>
+        <span class="rule-label">✓ Pair Together</span>
         <ul>
           <li>Sweet fruits + sub-acid fruits</li>
           <li>Sub-acid + acid fruits</li>
@@ -381,7 +368,7 @@ to { opacity: 1; transform: translateY(0); }
         </ul>
       </div>
       <div class="rule-card dont">
-        <p class="rule-label">✕ Never Mix</p>
+        <span class="rule-label">✕ Never Mix</span>
         <ul>
           <li>Melons with any other fruit</li>
           <li>Sweet fruits + acid fruits</li>
@@ -393,6 +380,8 @@ to { opacity: 1; transform: translateY(0); }
       </div>
     </div>
   </div>
+
+  <!-- HYDRATION -->
 
   <div class="hydration-strip">
     <strong>💧 Daily Hydration Rule</strong>
@@ -534,7 +523,7 @@ to { opacity: 1; transform: translateY(0); }
         <p class="meal-time">4:00 PM — Afternoon</p>
         <p class="meal-name">Stone Fruit &amp; Fig</p>
         <p class="meal-fruits">Peach + apricots + fresh figs</p>
-        <p class="meal-note">Figs are sweet and pair well with stone fruits. High in fibre.</p>
+        <p class="meal-note">Figs pair well with stone fruits and are high in fibre.</p>
       </div>
       <div class="meal-card">
         <span class="meal-emoji">🍌</span>
@@ -545,6 +534,8 @@ to { opacity: 1; transform: translateY(0); }
       </div>
     </div>
   </div>
+
+  <!-- TIPS -->
 
   <div class="tips-section">
     <h2>General Tips</h2>
