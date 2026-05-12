@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en" style="background:#0e1210;">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="dark">
+<title>3-Day Fruit Fast</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    background: #0e1210 !important;
+    color: #e8ede9 !important;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.6;
+    min-height: 100vh;
+    color-scheme: dark;
+  }
+
+  body { position: relative; overflow-x: hidden; }
+
+  body::before {
+    content: '';
+    position: fixed;
+    top: -200px; right: -200px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(212,168,71,0.06) 0%, transparent 70%);
+    pointer-events: none; z-index: 0;
+  }
+  body::after {
+    content: '';
+    position: fixed;
+    bottom: -150px; left: -150px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(122,171,130,0.08) 0%, transparent 70%);
+    pointer-events: none; z-index: 0;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 64px 24px 96px;
+    position: relative; z-index: 1;
+  }
+
+  /* ── HEADER ── */
+  header {
+    text-align: center;
+    margin-bottom: 48px;
+    animation: fadeUp 0.7s ease both;
+  }
+
+  .header-tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #7aab82;
+    border: 1px solid #3d6045;
+    padding: 6px 18px;
+    border-radius: 20px;
+    margin-bottom: 22px;
+  }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    font-weight: 700;
+    color: #e8ede9;
+    line-height: 1.1;
+    margin-bottom: 14px;
+  }
+  h1 em { font-style: italic; color: #d97a5e; }
+
+  .subtitle {
+    font-size: 1rem;
+    color: #6a8870;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  /* ── TOGGLE ── */
+  .plan-toggle {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 48px;
+    animation: fadeUp 0.7s 0.05s ease both;
+  }
+
+  .toggle-btn {
+    background: #161c18;
+    border: 1px solid rgba(255,255,255,0.1);
+    color: #6a8870;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 500;
+    padding: 12px 28px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    letter-spacing: 0.5px;
+    line-height: 1.3;
+  }
+
+  .toggle-btn:first-child { border-radius: 10px 0 0 10px; }
+  .toggle-btn:last-child  { border-radius: 0 10px 10px 0; border-left: none; }
+  .toggle-btn:not(:first-child):not(:last-child) { border-left: none; }
+
+  .toggle-btn.active {
+    background: #1d2620;
+    color: #e8ede9;
+    border-color: rgba(122,171,130,0.4);
+    z-index: 1;
+    position: relative;
+  }
+
+  .btn-sub {
+    display: block;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 2px;
+    opacity: 0.55;
+  }
+  .toggle-btn.active .btn-sub { color: #7aab82; opacity: 1; }
+
+  /* ── RULES ── */
+  .rules-section {
+    background: #161c18;
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 20px;
+    padding: 36px;
+    margin-bottom: 48px;
+    animation: fadeUp 0.7s 0.1s ease both;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .rules-section::before {
+    content: '⚠';
+    position: absolute;
+    top: -10px; right: 20px;
+    font-size: 120px;
+    opacity: 0.03;
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .rules-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+    color: #d4a847;
+  }
+
+  .rules-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  .rule-card {
+    background: #1d2620;
+    border-radius: 12px;
+    padding: 18px;
+    border: 1px solid rgba(255,255,255,0.05);
+  }
+  .rule-card.do   { border-color: rgba(122,171,130,0.25); }
+  .rule-card.dont { border-color: rgba(217,122,94,0.25); }
+
+  .rule-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    display: block;
+  }
+  .rule-card.do   .rule-label { color: #7aab82; }
+  .rule-card.dont .rule-label { color: #d9927a; }
+
+  .rule-card ul {
+    list-style: none;
+    font-size: 0.85rem;
+    line-height: 2;
+    color: rgba(232,237,233,0.75);
+  }
+  .rule-card ul li::before { margin-right: 8px; }
+  .rule-card.do   ul li::before { content: '✓'; color: #7aab82; }
+  .rule-card.dont ul li::before { content: '✕'; color: #d9927a; }
+
+  /* ── HYDRATION ── */
+  .hydration-strip {
+    background: rgba(122,171,130,0.07);
+    border-left: 3px solid #3d6045;
+    border-radius: 0 12px 12px 0;
+    padding: 16px 22px;
+    margin-bottom: 48px;
+    font-size: 0.875rem;
+    color: rgba(232,237,233,0.8);
+    animation: fadeUp 0.7s 0.15s ease both;
+  }
+  .hydration-strip strong {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 4px;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #7aab82;
+  }
+
+  /* ── COMPARISON GRID ── */
+  .comparison-wrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    margin-bottom: 56px;
+    animation: fadeUp 0.7s 0.2s ease both;
+    transition: grid-template-columns 0.3s ease;
+  }
+
+  .plan-col { display: block; }
+  .plan-col.hidden { display: none; }
+
+  .plan-col-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+
+  .plan-label {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    color: #e8ede9;
+  }
+
+  .plan-badge {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 20px;
+  }
+  .badge-pure { background: rgba(122,171,130,0.12); color: #7aab82; border: 1px solid rgba(122,171,130,0.25); }
+  .badge-oats { background: rgba(212,168,71,0.12);  color: #d4a847; border: 1px solid rgba(212,168,71,0.25); }
+
+  /* ── OATS NOTE ── */
+  .oats-note {
+    background: rgba(212,168,71,0.07);
+    border-left: 3px solid rgba(212,168,71,0.35);
+    border-radius: 0 12px 12px 0;
+    padding: 14px 18px;
+    margin-bottom: 24px;
+    font-size: 0.85rem;
+    color: rgba(232,237,233,0.8);
+  }
+  .oats-note strong {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 4px;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #d4a847;
+  }
+
+  /* ── DAYS ── */
+  .day-section { margin-bottom: 36px; }
+
+  .day-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+
+  .day-badge {
+    width: 42px; height: 42px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .day-1 .day-badge { background: rgba(122,171,130,0.15); color: #7aab82; }
+  .day-2 .day-badge { background: rgba(217,122,94,0.15);  color: #d97a5e; }
+  .day-3 .day-badge { background: rgba(212,168,71,0.15);  color: #d4a847; }
+
+  .day-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: #e8ede9;
+  }
+  .day-theme {
+    font-size: 0.7rem;
+    color: #6a8870;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-weight: 500;
+    display: block;
+    margin-top: 2px;
+  }
+
+  /* ── MEAL CARDS ── */
+  .meal-list { display: flex; flex-direction: column; gap: 8px; }
+
+  .meal-card {
+    background: #161c18;
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 12px;
+    padding: 14px 16px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .meal-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px rgba(0,0,0,0.5);
+  }
+  .meal-card.oats-card {
+    border-color: rgba(212,168,71,0.2);
+    background: rgba(212,168,71,0.04);
+  }
+
+  .meal-emoji { font-size: 1.3rem; flex-shrink: 0; margin-top: 2px; }
+
+  .meal-body { flex: 1; min-width: 0; }
+
+  .meal-time {
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #6a8870;
+    margin-bottom: 2px;
+  }
+  .meal-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.92rem;
+    color: #e8ede9;
+    margin-bottom: 3px;
+    line-height: 1.3;
+  }
+  .meal-fruits {
+    font-size: 0.78rem;
+    color: rgba(232,237,233,0.55);
+    line-height: 1.5;
+  }
+  .meal-note {
+    font-size: 0.7rem;
+    color: #7aab82;
+    margin-top: 5px;
+    font-style: italic;
+    line-height: 1.4;
+  }
+  .meal-card.oats-card .meal-note { color: #c9a040; }
+
+  /* ── TIPS ── */
+  .tips-section {
+    margin-top: 48px;
+    padding-top: 48px;
+    border-top: 1px solid rgba(255,255,255,0.07);
+    animation: fadeUp 0.7s 0.5s ease both;
+  }
+  .tips-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    color: #e8ede9;
+    margin-bottom: 18px;
+  }
+  .tips-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    list-style: none;
+  }
+  .tip-item {
+    background: #161c18;
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 12px;
+    padding: 14px 16px;
+    font-size: 0.82rem;
+    color: rgba(232,237,233,0.75);
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    line-height: 1.5;
+  }
+  .tip-icon { font-size: 0.95rem; flex-shrink: 0; margin-top: 1px; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 800px) {
+    .comparison-wrap { grid-template-columns: 1fr !important; }
+  }
+  @media (max-width: 600px) {
+    .rules-grid { grid-template-columns: 1fr; }
+    .tips-list  { grid-template-columns: 1fr; }
+    .container  { padding: 40px 16px 64px; }
+    .toggle-btn { padding: 10px 16px; font-size: 0.8rem; }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <span class="header-tag">11 May – 13 May 2026</span>
+    <h1>3-Day <em>Fruit Fast</em></h1>
+    <p class="subtitle">Compare the pure fruit plan and the fruit + oats variation. Toggle between views or see them side by side.</p>
+  </header>
+
+  <!-- TOGGLE -->
+  <div class="plan-toggle">
+    <button class="toggle-btn" id="btn-fruit" onclick="setView('fruit')">
+      Fruit Only
+      <span class="btn-sub">Pure fast</span>
+    </button>
+    <button class="toggle-btn active" id="btn-both" onclick="setView('both')">
+      Side by Side
+      <span class="btn-sub">Compare</span>
+    </button>
+    <button class="toggle-btn" id="btn-oats" onclick="setView('oats')">
+      Fruit + Oats
+      <span class="btn-sub">Modified</span>
+    </button>
+  </div>
+
+  <!-- RULES -->
+  <div class="rules-section">
+    <h2>Fruit Combining Rules</h2>
+    <div class="rules-grid">
+      <div class="rule-card do">
+        <span class="rule-label">✓ Pair Together</span>
+        <ul>
+          <li>Sweet fruits + sub-acid fruits</li>
+          <li>Sub-acid + acid fruits</li>
+          <li>Melons alone (always)</li>
+          <li>Citrus + berries</li>
+          <li>Stone fruits together</li>
+          <li>Banana + dates (small amounts)</li>
+        </ul>
+      </div>
+      <div class="rule-card dont">
+        <span class="rule-label">✕ Never Mix</span>
+        <ul>
+          <li>Melons with any other fruit</li>
+          <li>Sweet fruits + acid fruits</li>
+          <li>Banana + citrus</li>
+          <li>Dates + acid fruits</li>
+          <li>High sugar + high water fruits</li>
+          <li>Too many varieties at once (3 max)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- HYDRATION -->
+  <div class="hydration-strip">
+    <strong>💧 Daily Hydration Rule</strong>
+    Drink 2–2.5L of water daily, always 30 min before or 60 min after eating. Herbal teas (peppermint, ginger) are allowed. Avoid drinking during or directly after meals — it dilutes digestion.
+  </div>
+
+  <!-- PLANS -->
+  <div class="comparison-wrap" id="comparison">
+
+    <!-- ── FRUIT ONLY ── -->
+    <div class="plan-col" id="col-fruit">
+      <div class="plan-col-header">
+        <span class="plan-label">Fruit Only</span>
+        <span class="plan-badge badge-pure">Pure fast</span>
+      </div>
+
+      <div class="day-section day-1">
+        <div class="day-header">
+          <div class="day-badge">1</div>
+          <div><h2 class="day-title">Monday — Ease In</h2><span class="day-theme">Hydrating &amp; Light</span></div>
+        </div>
+        <div class="meal-list">
+          <div class="meal-card"><span class="meal-emoji">🍉</span><div class="meal-body"><p class="meal-time">9:00 AM — Breakfast</p><p class="meal-name">Watermelon Solo</p><p class="meal-fruits">Watermelon only (2–3 large slices)</p><p class="meal-note">Melons always on an empty stomach — never combined.</p></div></div>
+          <div class="meal-card"><span class="meal-emoji">🍊</span><div class="meal-body"><p class="meal-time">11:30 AM — Mid-Morning</p><p class="meal-name">Citrus Boost</p><p class="meal-fruits">Orange + grapefruit + blueberries</p><p class="meal-note">Acid + sub-acid — perfect pairing for energy.</p></div></div>
+          <div class="meal-card"><span class="meal-emoji">🍑</span><div class="meal-body"><p class="meal-time">2:00 PM — Lunch</p><p class="meal-name">Stone Fruit Bowl</p><p class="meal-fruits">Peach + nectarine + plum</p><p class="meal-note">All stone fruits — digest at the same rate, no conflict.</p></div></div>
+          <div class="meal-card"><span class="meal-emoji">🍇</span><div class="meal-body"><p class="meal-time">4:30 PM — Afternoon</p><p class="meal-name">Grape &amp; Berry Mix</p><p class="meal-fruits">Red grapes + strawberries + raspberries</p><p class="meal-note">Sub-acid + acid — great digestive combo.</p></div></div>
+          <div class="meal-card"><span class="meal-emoji">🍌</span><div class="meal-body"><p class="meal-time">7:30 PM — Dinner</p><p class="meal-name">Sweet &amp; Creamy</p><p class="meal-fruits">Banana + mango + medjool dates</p><p class="meal-note">Heavier sweet fruits keep you satisfied overnight.</p></div></div>
+        </div>
+      </div>
+
+      <div class="day-section day-2">
+        <div class="day-header">
+          <div class="day-badge">2</div>
+          <div><h2 class="day-title">Tuesday — Deep Cleanse</h2><span class="day-theme">Detoxifying &amp; Alkalising</span></div>
+        </div>
+        <div class="meal-list">
+          <div class="meal-card"><span class="meal-emoji">🍋</span><div class="meal-body"><p class="meal-time">9:00 AM — Breakfast</p><p class="meal-name">Morning Citrus Flush</p><p class="meal-fruits">Lemon water first, then grapefruit + orange</p><p class="meal-note">Lemon water 20 min before fruit — kick-starts digestion.</p></div></div>
+          <div class="meal-card"><span class="meal-emoji">🫐</span><div class="meal-body"><p class="meal-time">11:30 AM — Mid-Morning</p><p class="meal-name">Antioxidant Hit</p><p class="meal-fruits">Blueberries + blackberries + cherries</p><p class="meal-note">Berry family — all sub-acid, digest perfectly together.</p></div></div>
+          <div class="meal-card"><span class="meal-emoji">🍈</span><div class="meal-body"><p class="meal-time">2:00 PM — Lunch</p><p class="meal-name">Melon Reset</p><p class="meal-fruits">Honeydew melon only (large portion)</p><p class="meal-note">Day 2 midpoint — melon solo resets and hydrates deeply.</p></div></div>
+          <div class="meal-card"><span class="meal-emoji">🥭</span><div class="meal-body"><p class="meal-time">4:30 PM — Afternoon</p><p class="meal-name">Tropical Sub-Acid</p><p class="meal-fruits">Mango + papaya + kiwi</p><p class="meal-note">All sub-acid tropicals — enzyme-rich and easy on the gut.</p></div></div>
+          <div class="meal-card"><span class="meal-emoji">🍎</span><div class="meal-body"><p class="meal-time">7:30 PM — Dinner</p><p class="meal-name">Apple &amp; Pear Wind-Down</p><p class="meal-fruits">Apple + pear + a small bunch of grapes</p><p class="meal-note">Sub-acid fruits — light and easy before sleep.</p></div></div>
+        </div>
+      </div>
+
+      <div class="day-section day-3">
+        <div class="day-header">
+          <div class="day-badge">3</div>
+          <div><h2 class="day-title">Wednesday — Finish Strong</h2><span class="day-theme">Energising &amp; Replenishing</span></div>
+        </div>
+        <div class="meal-list">
+          <div class="meal-card"><span class="meal-emoji">🍓</span><div class="meal-body"><p class="meal-time">9:00 AM — Breakfast</p><p class="meal-name">Berry Morning</p><p class="meal-fruits">Strawberries + raspberries + kiwi</p><p class="meal-note">Acid/sub-acid — high vitamin C start to the final day.</p></div></div>
+          <div class="meal-card"><span class="meal-emoji">🍊</span><div class="meal-body"><p class="meal-time">11:30 AM — Mid-Morning</p><p class="meal-name">Citrus &amp; Pineapple</p><p class="meal-fruits">Pineapple + orange + squeeze of lime</p><p class="meal-note">All acid fruits — bromelain from pineapple boosts digestion.</p></div></div>
+          <div class="meal-card"><span class="meal-emoji">🍉</span><div class="meal-body"><p class="meal-time">2:00 PM — Lunch</p><p class="meal-name">Watermelon Solo</p><p class="meal-fruits">Watermelon only (large portion)</p><p class="meal-note">Final melon flush — maximum hydration for the last stretch.</p></div></div>
+          <div class="meal-card"><span class="meal-emoji">🍑</span><div class="meal-body"><p class="meal-time">4:30 PM — Afternoon</p><p class="meal-name">Stone Fruit &amp; Fig</p><p class="meal-fruits">Peach + apricots + fresh figs</p><p class="meal-note">Figs pair well with stone fruits and are high in fibre.</p></div></div>
+          <div class="meal-card"><span class="meal-emoji">🍌</span><div class="meal-body"><p class="meal-time">7:30 PM — Final Meal</p><p class="meal-name">Grounding Sweet Bowl</p><p class="meal-fruits">Banana + mango + medjool dates (2–3)</p><p class="meal-note">Calorie-dense sweet fruits to avoid night cravings.</p></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── FRUIT + OATS ── -->
+    <div class="plan-col" id="col-oats">
+      <div class="plan-col-header">
+        <span class="plan-label">Fruit + Oats</span>
+        <span class="plan-badge badge-oats">Modified</span>
+      </div>
+
+      <div class="oats-note">
+        <strong>🌾 Oats Rule</strong>
+        Plain oats + unsweetened oat milk at 7:00 AM daily. Wait 2.5–3 hrs before eating any fruit — oats are a starch and mixing too soon causes fermentation and bloating. No toppings, no sweetener.
+      </div>
+
+      <div class="day-section day-1">
+        <div class="day-header">
+          <div class="day-badge">1</div>
+          <div><h2 class="day-title">Monday — Ease In</h2><span class="day-theme">Hydrating &amp; Light</span></div>
+        </div>
+        <div class="meal-list">
+          <div class="meal-card oats-card"><span class="meal-emoji">🌾</span><div class="meal-body"><p class="meal-time">9:00 AM — Breakfast</p><p class="meal-name">Plain Oats &amp; Oat Milk</p><p class="meal-fruits">60g rolled oats + unsweetened oat milk</p><p class="meal-note">Plain only — no fruit, honey, or toppings. Wait 2.5 hrs before fruit.</p></div></div>
+          <div class="meal-card"><span class="meal-emoji">🍉</span><div class="meal-body"><p class="meal-time">11:30 AM — Mid-Morning</p><p class="meal-name">Watermelon Solo</p><p class="meal-fruits">Watermelon only (2–3 large slices)</p><p class="meal-note">Melons always on an empty stomach — never combined.</p></div></div>
+          <div class="meal-card"><span class="meal-emoji">🍊</span><div class="meal-body"><p class="meal-time">2:00 PM — Lunch</p><p class="meal-name">Citrus Boost</p><p class="meal-fruits">Orange + grapefruit + blueberries</p><p class="meal-note">Acid + sub-acid — perfect pairing for energy.</p></div></div>
+          <div class="meal-card"><span class="meal-emoji">🍇</span><div class="meal-body"><p class="meal-time">4:30 PM — Afternoon</p><p class="meal-name">Grape &amp; Berry Mix</p><p class="meal-fruits">Red grapes + strawberries + raspberries</p><p class="meal-note">Sub-acid + acid — great digestive combo.</p></div></div>
+          <div class="meal-card"><span class="meal-emoji">🍌</span><div class="meal-body"><p class="meal-time">7:30 PM — Dinner</p><p class="meal-name">Sweet &amp; Creamy</p><p class="meal-fruits">Banana + mango + medjool dates</p><p class="meal-note">Heavier sweet fruits keep you satisfied overnight.</p></div></div>
+        </div>
+      </div>
+
+      <div class="day-section day-2">
+        <div class="day-header">
+          <div class="day-badge">2</div>
+          <div><h2 class="day-title">Tuesday — Deep Cleanse</h2><span class="day-theme">Detoxifying &amp; Alkalising</span></div>
+        </div>
+        <div class="meal-list">
+          <div class="meal-card oats-card"><span class="meal-emoji">🌾</span><div class="meal-body"><p class="meal-time">9:00 AM — Breakfast</p><p class="meal-name">Plain Oats &amp; Oat Milk</p><p class="meal-fruits">60g rolled oats + unsweetened oat milk</p><p class="meal-note">Plain only. Lemon water optional 20 min before oats.</p></div></div>
+          <div class="meal-card"><span class="meal-emoji">🫐</span><div class="meal-body"><p class="meal-time">11:30 AM — Mid-Morning</p><p class="meal-name">Antioxidant Hit</p><p class="meal-fruits">Blueberries + blackberries + cherries</p><p class="meal-note">Berry family — all sub-acid, digest perfectly together.</p></div></div>
+          <div class="meal-card"><span class="meal-emoji">🍈</span><div class="meal-body"><p class="meal-time">2:00 PM — Lunch</p><p class="meal-name">Melon Reset</p><p class="meal-fruits">Honeydew melon only (large portion)</p><p class="meal-note">Day 2 midpoint — melon solo resets and hydrates deeply.</p></div></div>
+          <div class="meal-card"><span class="meal-emoji">🥭</span><div class="meal-body"><p class="meal-time">4:30 PM — Afternoon</p><p class="meal-name">Tropical Sub-Acid</p><p class="meal-fruits">Mango + papaya + kiwi</p><p class="meal-note">All sub-acid tropicals — enzyme-rich and easy on the gut.</p></div></div>
+          <div class="meal-card"><span class="meal-emoji">🍎</span><div class="meal-body"><p class="meal-time">7:30 PM — Dinner</p><p class="meal-name">Apple &amp; Pear Wind-Down</p><p class="meal-fruits">Apple + pear + a small bunch of grapes</p><p class="meal-note">Sub-acid fruits — light and easy before sleep.</p></div></div>
+        </div>
+      </div>
+
+      <div class="day-section day-3">
+        <div class="day-header">
+          <div class="day-badge">3</div>
+          <div><h2 class="day-title">Wednesday — Finish Strong</h2><span class="day-theme">Energising &amp; Replenishing</span></div>
+        </div>
+        <div class="meal-list">
+          <div class="meal-card oats-card"><span class="meal-emoji">🌾</span><div class="meal-body"><p class="meal-time">9:00 AM — Breakfast</p><p class="meal-name">Plain Oats &amp; Oat Milk</p><p class="meal-fruits">60g rolled oats + unsweetened oat milk</p><p class="meal-note">Final morning — oats give steady energy to finish strong.</p></div></div>
+          <div class="meal-card"><span class="meal-emoji">🍓</span><div class="meal-body"><p class="meal-time">11:30 AM — Mid-Morning</p><p class="meal-name">Berry Morning</p><p class="meal-fruits">Strawberries + raspberries + kiwi</p><p class="meal-note">Acid/sub-acid — high vitamin C start to the final day.</p></div></div>
+          <div class="meal-card"><span class="meal-emoji">🍊</span><div class="meal-body"><p class="meal-time">2:00 PM — Lunch</p><p class="meal-name">Citrus &amp; Pineapple</p><p class="meal-fruits">Pineapple + orange + squeeze of lime</p><p class="meal-note">All acid fruits — bromelain from pineapple boosts digestion.</p></div></div>
+          <div class="meal-card"><span class="meal-emoji">🍑</span><div class="meal-body"><p class="meal-time">4:30 PM — Afternoon</p><p class="meal-name">Stone Fruit &amp; Fig</p><p class="meal-fruits">Peach + apricots + fresh figs</p><p class="meal-note">Figs pair well with stone fruits and are high in fibre.</p></div></div>
+          <div class="meal-card"><span class="meal-emoji">🍌</span><div class="meal-body"><p class="meal-time">7:30 PM — Final Meal</p><p class="meal-name">Grounding Sweet Bowl</p><p class="meal-fruits">Banana + mango + medjool dates (2–3)</p><p class="meal-note">Calorie-dense sweet fruits to avoid night cravings.</p></div></div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /comparison-wrap -->
+
+  <!-- TIPS -->
+  <div class="tips-section">
+    <h2>General Tips</h2>
+    <ul class="tips-list">
+      <li class="tip-item"><span class="tip-icon">⏰</span>Leave at least 2.5–3 hours between meals for full digestion before the next portion.</li>
+      <li class="tip-item"><span class="tip-icon">🌡️</span>Eat fruit at room temperature where possible — cold fruit slows digestion.</li>
+      <li class="tip-item"><span class="tip-icon">🦷</span>Rinse your mouth with water after citrus to protect tooth enamel.</li>
+      <li class="tip-item"><span class="tip-icon">😴</span>Stop eating by 8:00 PM to give your body a 12-hour overnight fast.</li>
+      <li class="tip-item"><span class="tip-icon">🤢</span>Feeling nauseous or dizzy is normal on day 1–2. Rest, hydrate, and push through.</li>
+      <li class="tip-item"><span class="tip-icon">🔁</span>Breaking the fast: on day 4, reintroduce food with a light salad, not a heavy meal.</li>
+    </ul>
+  </div>
+
+</div>
+
+<script>
+  function setView(view) {
+    const wrap     = document.getElementById('comparison');
+    const colFruit = document.getElementById('col-fruit');
+    const colOats  = document.getElementById('col-oats');
+    const btns     = { fruit: document.getElementById('btn-fruit'), both: document.getElementById('btn-both'), oats: document.getElementById('btn-oats') };
+
+    Object.values(btns).forEach(b => b.classList.remove('active'));
+    btns[view].classList.add('active');
+
+    if (view === 'fruit') {
+      wrap.style.gridTemplateColumns = '1fr';
+      wrap.style.maxWidth = '700px';
+      wrap.style.marginLeft = 'auto';
+      wrap.style.marginRight = 'auto';
+      colFruit.classList.remove('hidden');
+      colOats.classList.add('hidden');
+    } else if (view === 'oats') {
+      wrap.style.gridTemplateColumns = '1fr';
+      wrap.style.maxWidth = '700px';
+      wrap.style.marginLeft = 'auto';
+      wrap.style.marginRight = 'auto';
+      colFruit.classList.add('hidden');
+      colOats.classList.remove('hidden');
+    } else {
+      wrap.style.gridTemplateColumns = '';
+      wrap.style.maxWidth = '';
+      wrap.style.marginLeft = '';
+      wrap.style.marginRight = '';
+      colFruit.classList.remove('hidden');
+      colOats.classList.remove('hidden');
+    }
+  }
+</script>
+</body>
+</html>
